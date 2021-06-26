@@ -4,4 +4,3 @@ login: admin
 password: password
 login: user
 password: password
-# koolBook

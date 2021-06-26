@@ -60,6 +60,7 @@ public class RecipeService {
 
     @Transactional
     public Recipes findByNameOfCourse(String nameOfCourse) {
+
         return recipeRepository.findByNameOfCourse(nameOfCourse);
     }
 
@@ -114,40 +115,40 @@ public class RecipeService {
 
     @Transactional(readOnly = true)
     public List<String> findRecipeWithAccess(String word, Pageable pageable) {
-
-        return recipeRepository.findRecipeWithAccess(word, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeWithAccess(word, wordVariants[0], wordVariants[1], wordVariants[2], pageable);
     }
 
     @Transactional(readOnly = true)
     public List<String> findRecipeByName(String word, Pageable pageable) {
-
-        return recipeRepository.findRecipeByName(word, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeByName(word, wordVariants[0], wordVariants[1], wordVariants[2], pageable);
     }
 
     @Transactional(readOnly = true)
     public List<String> findRecipeWithAccessAndByUser(String word, Long id, Pageable pageable) {
-
-        return recipeRepository.findRecipeWithAccessAndByUser(word, id, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeWithAccessAndByUser(word, wordVariants[0], wordVariants[1], wordVariants[2], id, pageable);
     }
 
     @Transactional(readOnly = true)
     public List<String> findRecipeByIngredientWithAccess(String word, Pageable pageable) {
-
-        return recipeRepository.findRecipeByIngredientWithAccess(word, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeByIngredientWithAccess(word, wordVariants[0], wordVariants[1], wordVariants[2], pageable);
 
     }
 
     @Transactional(readOnly = true)
     public List<String> findRecipeByIngredient(String word, Pageable pageable) {
-
-        return recipeRepository.findRecipeByIngredient(word, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeByIngredient(word, wordVariants[0], wordVariants[1], wordVariants[2], pageable);
 
     }
 
     @Transactional(readOnly = true)
     public List<String> findRecipeByIngredientWithAccessAndByUser(String word, Long id, Pageable pageable) {
-
-        return recipeRepository.findRecipeByIngredientWithAccessAndByUser(word, id, pageable);
+        String [] wordVariants = words(word);
+        return recipeRepository.findRecipeByIngredientWithAccessAndByUser(word, wordVariants[0], wordVariants[1], wordVariants[2], id, pageable);
 
     }
 
@@ -231,6 +232,14 @@ public class RecipeService {
     @Transactional
     public void changeAccessByUserId(Long id) {
         recipeRepository.changeAccessByUserId(id);
+    }
+
+    private String[] words(String word) {
+        String[] words = new String[3];
+        words[0] = word.toLowerCase();
+        words[1] = words[0].substring(0, 1).toUpperCase() + words[0].substring(1);
+        words[2] = word.toUpperCase();
+        return words;
     }
 }
 

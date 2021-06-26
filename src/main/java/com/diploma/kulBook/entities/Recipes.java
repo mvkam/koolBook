@@ -14,7 +14,7 @@ public class Recipes extends AuditModel {
 
     String category;
 
-    @Column(length = 2000)
+    @Column(length = 3000)
     String instruction;
 
     Integer numberOfServings;

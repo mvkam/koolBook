@@ -113,7 +113,7 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
             ingredientService.addIngredient("Unshelled egg", 0f, 0f, 0f, 0f, 55f);
             ingredientService.addIngredient("Clove of garlic", 0f, 0f, 0f, 0f, 3f);
             ingredientService.addIngredient("Beef", 0f, 0f, 0f, 0f, 0f);
-            ingredientService.addIngredient("Beef broth", 0f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Beef broth", 250f, 0f, 0f, 0f, 0f);
             ingredientService.addIngredient("Tomato sauce", 300f, 250f, 30f, 10f, 0f);
             ingredientService.addIngredient("Canned diced tomatoes", 0f, 0f, 0f, 0f, 0f);
             ingredientService.addIngredient("Italian seasoning", 0f, 0f, 12f, 4f, 0f);
@@ -137,6 +137,26 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
             ingredientService.addIngredient("Meat", 0f, 0f, 0f, 0f, 0f);
             ingredientService.addIngredient("Tomato paste", 0f, 0f, 17f, 6f, 0f);
             ingredientService.addIngredient("Flavoring for kebab", 0f, 0f, 12f, 4f, 0f);
+            ingredientService.addIngredient("Mayonnaise", 230f, 0f, 14f, 5f, 0f);
+            ingredientService.addIngredient("Bread", 0f, 0f, 0f, 0f, 30f);
+            ingredientService.addIngredient("Cress", 0f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Ham", 0f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Crisps", 0f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Mixed greens", 0f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Basil", 25f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Parmesan grated", 90f, 72f, 6f, 2f, 0f);
+            ingredientService.addIngredient("Shallot", 0f, 0f, 0f, 0f, 30f);
+            ingredientService.addIngredient("Vegetable broth", 250f, 0f, 0f, 0f, 0f);
+            ingredientService.addIngredient("Heavy cream", 240f, 192f, 15f, 5f, 0f);
+            ingredientService.addIngredient("Bell pepper", 0f, 0f, 0f, 0f, 130f);
+            ingredientService.addIngredient("Cashew", 120f, 0f, 10f, 0f, 130f);
+            ingredientService.addIngredient("Nutritional yeast", 60f, 48f, 9f, 3f, 130f);
+            ingredientService.addIngredient("Almond extract", 0f, 0f, 0f, 5f, 0f);
+            ingredientService.addIngredient("Campari", 250f, 200f, 18f, 5f, 0f);
+            ingredientService.addIngredient("Vermouth sweet", 250f, 200f, 18f, 5f, 0f);
+            ingredientService.addIngredient("Gin", 250f, 200f, 18f, 5f, 0f);
+            ingredientService.addIngredient("Orange peel", 250f, 200f, 18f, 5f, 0f);
+
         };
     }
 
@@ -144,7 +164,7 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
     public CommandLineRunner insertResipes(final RecipeService recipeService, final IngredientService ingredientService, final CustUserService custUserService, final IngredientAmountService ingredientAmountService) {
         return strings -> {
 
-            Recipes res = new Recipes("Goulash", "Appetizers", "In a large skillet over medium heat, heat oil. Add onion and cook until soft, about 5 minutes. Add garlic and cook until fragrant, about 1 minute more. Add ground beef and cook until no longer pink, about 6 minutes. Drain fat and return to pan. Season with salt and pepper. Add tomato paste and stir to coat, then pour in broth, tomato sauce, and diced tomatoes. Season with Italian seasoning and paprika, and stir in macaroni. Bring to a simmer and cook, stirring occasionally, until pasta is tender, about 15 minutes. Stir in cheese and remove from heat. Garnish with parsley before serving.", 6, false, 2000f);
+            Recipes res = new Recipes("Goulash", "Main Courses", "In a large skillet over medium heat, heat oil. Add onion and cook until soft, about 5 minutes. Add garlic and cook until fragrant, about 1 minute more. Add ground beef and cook until no longer pink, about 6 minutes. Drain fat and return to pan. Season with salt and pepper. Add tomato paste and stir to coat, then pour in broth, tomato sauce, and diced tomatoes. Season with Italian seasoning and paprika, and stir in macaroni. Bring to a simmer and cook, stirring occasionally, until pasta is tender, about 15 minutes. Stir in cheese and remove from heat. Garnish with parsley before serving.", 6, false, 2000f);
 
             res.setCustUser(custUserService.findByLogin("user"));
 
@@ -370,15 +390,16 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
             ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Easy Stir-Fried Beef With Mushrooms and Butter"));
             ingredientAmountService.addIngredientAndAmount(ingredientAmount);
 
-            res = new Recipes("Roasted French-Style Potatoes", "Main Courses", "Preheat oven to 400 degrees F.\n" +
-                    "\n" +
-                    "Cut potatoes into French-style strips.\n" +
-                    "\n" +
-                    "In a large bowl, place all ingredients including potatoes and mix well.\n" +
-                    "\n" +
-                    "Pour onto a sheet pan and roast for 15 minutes. Turn potatoes and roast for another 15-30 minutes until cooked and browned. Cooking time will vary depending on the thickness of the potatoes.\n" +
-                    "\n" +
-                    "Brush the tops with oil and broil until browned. Remove, brush with more oil and sprinkle on kosher or sea salt.", 3, false, 800f);
+            res = new Recipes("Roasted French-Style Potatoes", "Main Courses", """
+                    Preheat oven to 400 degrees F.
+
+                    Cut potatoes into French-style strips.
+
+                    In a large bowl, place all ingredients including potatoes and mix well.
+
+                    Pour onto a sheet pan and roast for 15 minutes. Turn potatoes and roast for another 15-30 minutes until cooked and browned. Cooking time will vary depending on the thickness of the potatoes.
+
+                    Brush the tops with oil and broil until browned. Remove, brush with more oil and sprinkle on kosher or sea salt.""", 3, false, 800f);
 
             res.setCustUser(custUserService.findByLogin("admin"));
 
@@ -424,11 +445,12 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
             ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Roasted French-Style Potatoes"));
             ingredientAmountService.addIngredientAndAmount(ingredientAmount);
 
-            res = new Recipes("Shish Kebab in the Oven bag", "Main Courses", "Meat is washed carefully and cut into pieces. Then put everything into a large cup, add salt, pepper and spices.\n" +
-                    "Then we clean and cut onions in half rings. Put them into the meat, squeezing the juice out of it.\n" +
-                    "Into a cup of meat pour tomato paste. Everything should be mixed well and left for 1 hour.\n" +
-                    "In the requested time we take wooden skewers and string meat onto them. After this, gently put everything into the sleeve for the oven bag. They should lie exactly in a row, you do not need to arrange them one on the other.\n" +
-                    "Preheat the oven up to 180 degrees and set to bake our dish for 30 minutes.", 4, true, 1000f);
+            res = new Recipes("Shish Kebab in the Oven bag", "Main Courses", """
+                    Meat is washed carefully and cut into pieces. Then put everything into a large cup, add salt, pepper and spices.
+                    Then we clean and cut onions in half rings. Put them into the meat, squeezing the juice out of it.
+                    Into a cup of meat pour tomato paste. Everything should be mixed well and left for 1 hour.
+                    In the requested time we take wooden skewers and string meat onto them. After this, gently put everything into the sleeve for the oven bag. They should lie exactly in a row, you do not need to arrange them one on the other.
+                    Preheat the oven up to 180 degrees and set to bake our dish for 30 minutes.""", 4, true, 1000f);
 
             res.setCustUser(custUserService.findByLogin("user"));
 
@@ -449,14 +471,310 @@ public class AppConfig extends GlobalMethodSecurityConfiguration {
             ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Shish Kebab in the Oven bag"));
             ingredientAmountService.addIngredientAndAmount(ingredientAmount);
 
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Powdered sugar"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Shish Kebab in the Oven bag"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Powdered sugar"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Shish Kebab in the Oven bag"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Egg & cress club sandwich", "Appetizers", "Bring a pan of water to the boil and carefully lower in the eggs. Cook for 6 mins, then cool under running water until they can be peeled. Peel the eggs, then leave to cool completely. " +
+                    "Mash or chop the eggs, then mix with 1½ tbsp mayonnaise and some seasoning, if you like. Toast the bread. " +
+                    "Lay one slice of bread on a board. Butter it, then spread on three quarters of the egg and scatter over the cress. Add another slice of toast and gently spread on the remaining mayo. Add the tomato or lettuce and ham or cheese (or whichever combination you prefer). Dot the remaining egg over the top, spread gently, then top with the final piece of toast. Cut the crusts off if you like, then gently cut the sandwich into four quarters, being careful not to squash out the egg. Skewer each sandwich with a sandwich pick. Serve with crisps.",
+                    1, true, 300f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(110f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Unshelled egg"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(28f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Mayonnaise"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(90f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Bread"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(10f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Butter"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(25f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Cress"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(50f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Tomato"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Ham"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(0f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Crisps"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Egg & cress club sandwich"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Perfect Simple Salad", "Salads", "Wash the greens and spin dry if you like, then lay them out on a towel to air-dry for a little while. " +
+                    "Tear up your greens if you think they will be too big to spear and eat gracefully. " +
+                    "No matter how you serve your salad, it's best to toss it in a really big bowl — much bigger than the volume of the green themselves. " +
+                    "Here I added about 1/3 cup grated carrot (I didn't peel the carrot, and I grated it straight into the salad) and a small handful chiffonaded basil. " +
+                    "For this salad dressing, whisk 2 tablespoons good olive oil with 2 teaspoons balsamic vinegar until thick and emulsified. " +
+                    "Whisk in 1/2 teaspoon honey and blend. " +
+                    "Taste the dressing and adjust as needed. " +
+                    "Drizzle the salad very lightly with dressing, just enough to moisten the lettuce, and work it in with your hands or two forks, stopping to toss it before you add all the dressing you've made. You want to coat the greens very, very lightly. " +
+                    "As you toss the salad with your hands or forks, sprinkle on salt and pepper. Taste and adjust as needed. " +
+                    "Serve the salad in individual bowls, or on plates. Garnish with some pepper, a shaving of cheese, or some fruit or nuts.", 1, true, 250f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(120f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Mixed greens"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(25f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Carrot"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(25f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Basil"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(34f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Extra-virgin olive oil"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(10f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Vinegar"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(6f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Honey"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
             ingredientAmount = new IngredientAmount(0f);
             ingredientAmount.setIngredient(ingredientService.getIngredient("Salt"));
-            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Shish Kebab in the Oven bag"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
             ingredientAmountService.addIngredientAndAmount(ingredientAmount);
 
             ingredientAmount = new IngredientAmount(0f);
             ingredientAmount.setIngredient(ingredientService.getIngredient("Ground black pepper"));
-            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Shish Kebab in the Oven bag"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(0f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Parmesan grated"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Perfect Simple Salad"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Summer Tomato Soup", "Soups", "SoupsCut 3 pounds ripe tomatoes in half around the equator. Fit a fine-mesh strainer over a large bowl. Use your finger to scoop the tomato seeds into the strainer and collect the juices below (about 1/2 cup juice). Discard the tomato seeds. Place a box grater into the bowl and grate the cut-side of the tomato halves on the small holes of the grater. Discard the skins. You should have about 4 cups tomato pulp and juice. Finely chop 1 medium shallot (about 1/4 cup) and add to the pulp. " +
+                    "Fit a gallon-sized freezer zip-top bag inside the insert of an Instant Pot or electric pressure cooker. Add the shallot and tomato pulp, 1/4 cup fresh basil leaves, 1 cup low-sodium vegetable broth, and 1 tablespoon kosher salt to the bag. Seal the bag, pressing out as much air as possible. Freeze (with the bag still inside the insert) until solid, at least 6 hours or overnight. Remove the bag from the insert and keep frozen up to 3 months. " +
+                    "To cook, remove the frozen ingredients from the bag and place in the Instant Pot. Lock the lid on and make sure the pressure valve is closed. Set to cook under HIGH pressure for 5 minutes. It will take 20 to 22 minutes to come up to pressure. When the cook time is up, quick release the pressure. " +
+                    "Use tongs to remove the basil leaves. Whisk the soup to combine. Serve with torn fresh basil leaves, freshly ground black pepper, and a drizzle of heavy cream, if desired.", 4, true, 1000f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(1360f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Tomato"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Shallot"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(6f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Basil"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(250f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Vegetable broth"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Salt"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(0f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Ground black pepper"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(0f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Heavy cream"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Summer Tomato Soup"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Classic Pommes Anna", "Sides", "Arrange a rack in the top third of the oven and heat the oven to 425ºF. " +
+                    "Peel potatoes. Cut crosswise into 1/8-inch thick rounds. Divide the slices into 4 equal piles." +
+                    "Melt butter in the microwave. Brush the bottom and sides of an oven-safe 10-inch nonstick frying pan with 1 tablespoon of the butter and sprinkle with 1/4 teaspoon of the salt. Brush a thin layer of butter onto a sheet of aluminum foil big enough to cover the pan. " +
+                    "Starting in the center and overlapping the slices by about half, arrange one pile of the slices in a spiral pattern, making sure the bottom is completely and evenly covered. Use smaller slices in the center and larger slices on the edges. Brush with 1/2 tablespoon of the melted butter and sprinkle with 1/4 teaspoon of the salt. " +
+                    "This time working your way from the outside in to the center (again using the larger slices on the edges), arrange the second pile of potato slices to build the second layer. Brush with 1/2 tablespoon of the butter and sprinkle with 1/4 teaspoon of the salt. " +
+                    "Repeat arranging the third layer, working from the inside out, then buttering and seasoning. Build the fourth and final layer of potatoes from the outside in. Brush all the remaining butter onto the top layer and season with the remaining 1/4 teaspoon salt. " +
+                    "Place the foil butter-side down onto the potatoes, then weigh down the foil by topping it with a 9-inch cake pan or pie plate. Fill the cake pan or pie plate with pie weights. Bake for 25 minutes. " +
+                    "Remove the weights and foil. Bake uncovered until knife-tender and the bottom is golden brown, about 20 minutes more. " +
+                    "Turn the oven to broil on high. Broil until the top is golden brown, about 5 minutes. " +
+                    "Gently shake the pan to see if the potato cake slides around easily. If it doesn’t, run a thin knife around the edges and slide the spatula underneath the potato cake to loosen. Invert a cutting board over the pan. Grasping both the board and the pan (careful, hot!), flip over and remove the pan. Cut the potato cake into wedges.", 4, true, 1000f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(900f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Potato"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Pommes Anna"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(60f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Butter"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Pommes Anna"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(13f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Salt"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Pommes Anna"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("White Pound Cake", "Desserts", "Place the butter in a mixing bowl and work it with a wooden spoon until it becomes shiny, about 5 minutes. Add in the sugar and blend until the mixture becomes light and the sugar granules almost disappear. After the mixture becomes well blended, begin to stir clockwise in a circular motion. Add a little of the flour and some of the milk, stirring well after each addition until both are used up, beginning and ending with flour. Add salt and almond extract. " +
+                    "Beat the egg whites until they form soft peaks but are not dry. Fold into the batter, then spoon the batter into the tube pan. Set into a preheated 300°F oven. Place on the middle shelf and back at 300°F for 40 minutes, then turn up to 325°F for 15 minutes more. Remove from oven and run a knife around the sides of the pan. Turn out upon a wire rack, then turn cake face up. Leave to cool. After 15 minutes of cooling, cover to prevent drying out.", 8, true, 1000f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(225f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Butter"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(420f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Powdered sugar"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(480f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Wheat flour"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(125f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Whole milk"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(3f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Salt"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(20f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Almond extract"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(124f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Egg white"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("White Pound Cake"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Classic Negroni", "Drinks", "Fill an old-fashioned glass with ice. Add the Campari, vermouth, and gin, and stir to combine. " +
+                    "Run the flamed orange peel around the edge of the glass, lightly squeezing to express the oils. Drop the peel into the glass and enjoy. " +
+                    "A plain orange peel works just as well here.", 1, true, 100f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Campari"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Negroni"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Vermouth sweet"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Negroni"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(30f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Gin"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Negroni"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(0f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Orange peel"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Classic Negroni"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            res = new Recipes("Vegan Cashew Cheese Sauce", "Sauces", "Soak the cashews overnight in cold water to soften, unless you have a high power blender such as a Vitamix. " +
+                    "Combine all the ingredients in a blender, making sure the red peppers are on the bottom. Blend until a smooth sauce forms, adding a bit of water if the blender is having trouble blending. " +
+                    "Transfer to a sealed container and refrigerate until ready to use. The cheese sauce will keep for up to 5 days in the fridge.", 1, true, 1000f);
+
+            res.setCustUser(custUserService.findByLogin("user"));
+
+            recipeService.addRecipe(res);
+
+            ingredientAmount = new IngredientAmount(300f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Bell pepper"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(300f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Cashew"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(60f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Nutritional yeast"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(1000f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Meat"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(1000f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Meat"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(5f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Salt"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
+            ingredientAmountService.addIngredientAndAmount(ingredientAmount);
+
+            ingredientAmount = new IngredientAmount(1000f);
+            ingredientAmount.setIngredient(ingredientService.getIngredient("Meat"));
+            ingredientAmount.setRecipe(recipeService.findByNameOfCourse("Vegan Cashew Cheese Sauce"));
             ingredientAmountService.addIngredientAndAmount(ingredientAmount);
 
         };

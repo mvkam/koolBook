@@ -45,23 +45,23 @@ public interface RecipeRepository extends JpaRepository<Recipes, Long> {
     @Query("SELECT r.nameOfCourse FROM Recipes r where r.category = :Category and r.custUser.id = :userId")
     List<String> findByCategoryAndUser(@Param("Category") String category, @Param("userId") Long userId, Pageable pageable);
 
-    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE r.nameOfCourse LIKE concat('%', :word, '%') and r.access = true")
-    List<String> findRecipeWithAccess(@Param("word") String word, Pageable pageable);
+    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE (r.nameOfCourse LIKE concat('%', :word, '%') or r.nameOfCourse LIKE concat('%', :word2, '%') or r.nameOfCourse LIKE concat('%', :word3, '%') or r.nameOfCourse LIKE concat('%', :word4, '%')) and r.access = true")
+    List<String> findRecipeWithAccess(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, Pageable pageable);
 
-    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE r.nameOfCourse LIKE concat('%', :word, '%')")
-    List<String> findRecipeByName(@Param("word") String word, Pageable pageable);
+    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE (r.nameOfCourse LIKE concat('%', :word, '%') or r.nameOfCourse LIKE concat('%', :word2, '%') or r.nameOfCourse LIKE concat('%', :word3, '%') or r.nameOfCourse LIKE concat('%', :word4, '%'))")
+    List<String> findRecipeByName(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, Pageable pageable);
 
-    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE r.nameOfCourse LIKE concat('%', :word, '%') and (r.access = true or r.custUser.id = :userId)")
-    List<String> findRecipeWithAccessAndByUser(@Param("word") String word, @Param("userId") Long userId, Pageable pageable);
+    @Query("SELECT r.nameOfCourse FROM Recipes r WHERE (r.nameOfCourse LIKE concat('%', :word, '%') or r.nameOfCourse LIKE concat('%', :word2, '%') or r.nameOfCourse LIKE concat('%', :word3, '%') or r.nameOfCourse LIKE concat('%', :word4, '%')) and (r.access = true or r.custUser.id = :userId)")
+    List<String> findRecipeWithAccessAndByUser(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, @Param("userId") Long userId, Pageable pageable);
 
-    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where name like concat('%', :word, '%')) and access = true)", nativeQuery = true)
-    List<String> findRecipeByIngredientWithAccess(@Param("word") String word, Pageable pageable);
+    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where (name like concat('%', :word, '%') or name like concat('%', :word2, '%') or name like concat('%', :word3, '%') or name like concat('%', :word4, '%')) and access = true)", nativeQuery = true)
+    List<String> findRecipeByIngredientWithAccess(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, Pageable pageable);
 
-    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where name like concat('%', :word, '%')))", nativeQuery = true)
-    List<String> findRecipeByIngredient(@Param("word") String word, Pageable pageable);
+    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where (name like concat('%', :word, '%') or name like concat('%', :word2, '%') or name like concat('%', :word3, '%') or name like concat('%', :word4, '%'))))", nativeQuery = true)
+    List<String> findRecipeByIngredient(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, Pageable pageable);
 
-    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where name like concat('%', :word, '%')) and (access = true or custuser_id = :userId))", nativeQuery = true)
-    List<String> findRecipeByIngredientWithAccessAndByUser(@Param("word") String word, @Param("userId") Long userId, Pageable pageable);
+    @Query(value = "select name_of_course from recipes where id in (select recipe_id from ingredient_amount where ingredient_id in (select id from ingredient where (name like concat('%', :word, '%') or name like concat('%', :word2, '%') or name like concat('%', :word3, '%') or name like concat('%', :word4, '%'))) and (access = true or custuser_id = :userId))", nativeQuery = true)
+    List<String> findRecipeByIngredientWithAccessAndByUser(@Param("word") String word, @Param("word2") String word2, @Param("word3") String word3, @Param("word4") String word4, @Param("userId") Long userId, Pageable pageable);
 
     @Query("select COUNT(r)  FROM Recipes r")
     long countAll();
