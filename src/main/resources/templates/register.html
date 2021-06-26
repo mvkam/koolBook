@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Recipes login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/enter.css">
+    <link rel="icon" href="img/logo/favicon.png"/>
+</head>
+<body>
+<div class="container">
+    <div class="transform  rotateY">
+        <a href="/"><img src="img/logo/logo_transparent.png" height="100%" alt="Logo"></a>
+    </div>
+</div>
+<br>
+<div th:if="${exists}" class="isa_error">
+    <h3>User already exists!</h3>
+</div>
+<br>
+<div class="forms">
+    <form action="/newUser" method="POST">
+        <input th:type="text" th:name="login" class="enter_input" placeholder="*Login:" style="color: green"
+               required><br/>
+        <input th:type="password" th:name="password" class="enter_input" placeholder="*Password:" required><br/>
+        <input th:type="text" th:name="email" class="enter_input" placeholder="E-mail:"><br/>
+        <input th:type="text" th:name="phone" class="enter_input" placeholder="Phone:"><br/>
+        <input type="submit" class="btn btn-outline-light btn-lg btn-block"/>
+    </form>
+</div>
+</body>
+</html>

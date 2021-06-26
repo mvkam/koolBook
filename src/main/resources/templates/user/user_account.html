@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Account user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <script src="../js/jQuery%203.5.1.js"></script>
+
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="user/templs/nav-user::nav-user"></div>
+
+<main role="main">
+
+    <form action="/accountUpdate" method="get" id="form">
+        <input type="hidden" th:value="${id}" th:name="id" id="id"/>
+        <label for="login">Your Login:</label><br/>
+        <input type="text" th:value="${login}" required th:name="login" id="login"/><br/>
+        <label for="email">Your E-mail:</label><br/>
+        <input type="text" th:value="${email}" th:name="email" id="email"/><br/>
+        <label for="phone">Your Phone Number:</label><br/>
+        <input type="text" th:value="${phone}" th:name="phone" id="phone"/>
+        <h2>To Change Your Password:</h2>
+        <label for="newPassword1">New Password:</label><br/>
+        <input type="password" id="newPassword1"/><br/>
+        <label for="newPassword2">Retype new Password:</label><br/>
+        <input type="password" th:name="newPassword2" id="newPassword2"/><br/><br/>
+        <input type="button" value="Accept Changes/Exit" class="btn btn-outline-success my-2 my-sm-0" id="accButton"
+               onclick="button()"/>
+    </form>
+
+</main>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+    let login = [[${login}]];
+    let email = [[${email}]];
+    let phone = [[${phone}]];
+    /*]]>*/
+    let pass2 = $('#newPassword2');
+
+    function button() {
+        let pw1 = $('#newPassword1').val();
+        let pw2 = pass2.val();
+
+        if (login === $("#login").val() && email === $("#email").val() && phone === $("#phone").val() && pw2 === '') {
+
+            document.location.href = '/user/main-user';
+
+        } else if (pw1 !== pw2) {
+            alert("Passwords must be the same!");
+            pass2.val('').change();
+            pass2.focus();
+
+        } else {
+            $("form").submit();
+
+            alert("Updated!");
+        }
+
+    }
+</script>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

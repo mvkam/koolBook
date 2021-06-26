@@ -1,0 +1,26 @@
+.delBtn {
+    width: 8em;
+    background: #f8f9fa;
+    margin-top: 0.5em;
+    color: #161616;
+}
+
+.remove_field {
+    width: 30px;
+    text-align: center;
+    padding: 0;
+}
+
+.remove_field img {
+    width: 100%;
+    margin-bottom: 0.4vh;
+}
+
+.titles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.3fr;
+}
+
+.titles input {
+    width: 100%;
+}

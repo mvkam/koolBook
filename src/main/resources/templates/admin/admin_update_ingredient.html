@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Admin update ingredient</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/changeDelRecipe.css">
+    <link rel="stylesheet" href="../css/adminUsers.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <script src="../js/jQuery%203.5.1.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="admin/templs/nav-admin::nav-admin"></div>
+
+<main role="main">
+
+    <form action="/updateIngredient" class="form-container" method="post">
+        <h1>Update Ingredient</h1>
+
+        <h2 th:if="${alert} == 'alert'">That Name is in Use.</h2>
+
+        <label for="id"><b>Ingredient Id</b></label>
+        <input th:type="text" th:name="id" readonly id="id" th:value="${id}"><br>
+
+        <label for="newIngName"><b>Ingredient Name</b></label>
+        <input th:type="text" th:name="name" required id="newIngName" th:value="${name}"><br>
+
+        <label for="newIngCup"><b>Grams in a Cup</b></label>
+        <input th:type="text" th:value="${cup}" th:name="cup" required pattern="[0-9]+" id="newIngCup"/><br>
+
+        <label for="newIngGlass"><b>Grams in a Glass</b></label>
+        <input th:type="text" th:value="${glass}" th:name="glass" required pattern="[0-9]+" id="newIngGlass"/><br>
+
+        <label for="newIngTableSpoon"><b>Grams in a Tablespoon</b></label>
+        <input th:type="text" th:value="${tableSpoon}" th:name="tableSpoon" required pattern="[0-9]+"
+               id="newIngTableSpoon"/><br>
+
+        <label for="newIngTeaSpoon"><b>Grams in a Teaspoon</b></label>
+        <input th:type="text" th:value="${teaSpoon}" th:name="teaSpoon" required pattern="[0-9]+"
+               id="newIngTeaSpoon"/><br>
+
+        <label for="newIngPiece"><b>Grams in a Piece</b></label>
+        <input th:type="text" th:value="${piece}" th:name="piece" required pattern="[0-9]+" id="newIngPiece"/><br><br>
+
+        <button type="submit" class="ingredientSaveBtn">Save an Ingredient</button>
+    </form>
+
+</main>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

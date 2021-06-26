@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+body {
+    background-color: #161616;
+    background-image: url(../img/bckgrnd/eggs.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    position: relative;
+}
+
+div {
+    height: 50vh;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+    margin: -3em 2em 2em 0;
+    -webkit-perspective: 400px;
+    perspective: 400px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.transform {
+    bottom: 0;
+    -webkit-animation: notransform 5s infinite;
+    animation: notransform 5s infinite;
+}
+
+.rotateY {
+    -webkit-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+}
+
+@-webkit-keyframes notransform {
+    50% {
+        transform: none;
+    }
+}
+
+@keyframes notransform {
+    50% {
+        transform: none;
+    }
+}
+
+.forms {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 3vh;
+}
+
+.enter_input {
+    display: block;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+    font-weight: 400;
+    text-align: center;
+    background-color: transparent;
+    overflow: visible;
+    margin: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.isa_error {
+    color: #D8000C;
+    background-color: #e4e4e4;
+    margin: 10px 0;
+    padding: 12px;
+    height: auto;
+    position: absolute;
+    top: 60%;
+    width: 100%;
+}

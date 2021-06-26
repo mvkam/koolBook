@@ -1,0 +1,75 @@
+@media all and (min-width: 768px) {
+
+    .menu-vertical {
+        display: none;
+    }
+}
+
+.content {
+    display: none;
+    clear: right;
+}
+
+.content ul {
+    width: 95%;
+    margin-right: 5%;
+    padding-left: 0;
+}
+
+.content ul ul {
+    display: none;
+}
+
+.content ul li:focus ul {
+    display: block;
+    width: 120px;
+    position: absolute;
+    right: 202px;
+    top: 62px;
+}
+
+.content ul li:nth-child(2):focus ul {
+    top: 112px;
+}
+
+.content ul li:nth-child(4):focus ul {
+    top: 237px;
+}
+
+.menu-vertical {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 213px;
+}
+
+.main-myButton {
+    float: right;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.menu-vertical li, input, button {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 5px;
+    overflow: visible;
+    list-style-type: none;
+}
+
+.menu-vertical input {
+    width: 95%;
+    margin-right: 5%;
+    float: right;
+}
+
+.menu-vertical button {
+    /*margin-left: 40px;*/
+}
+
+.menu-vertical a:active, /* активная/посещенная ссылка */
+a:hover, /* при наведении */
+a {
+    text-decoration: none;
+    color: #f8f9fa;
+}

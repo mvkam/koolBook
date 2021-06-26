@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+html, body {
+    color: #f8f9fa;
+    margin-bottom: 25vh;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #161616;
+}
+
+.logo {
+    height: 12vh;
+
+}
+
+.logo_cont {
+    background-image: url(../img/bckgrnd/eggs_little.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media all and (max-width: 768px) {
+
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.forms {
+    min-height: 10vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #343a40;
+}
+
+.btn {
+    color: #8c8d8d;
+    border-color: #8c8d8d;
+}
+
+.btn-outline-success:hover {
+    color: #eae8e8;
+    background-color: #8c8d8d;
+    border-color: #8c8d8d;
+}
+
+.form-control:focus {
+    color: #8c8d8d;
+    background-color: #f8f9fa;
+    border-color: #8c8d8d;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(22, 22, 22, .25);
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active {
+    color: #eae8e8;
+    background-color: #f8f9fa;
+    border-color: #8c8d8d;
+}
+
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 .2rem #eae8e8;
+}
+
+main {
+    margin-top: 15vh;
+    display: flex;
+    margin-left: 2%;
+    color: #f8f9fa;
+}
+
+main h1 {
+    margin-bottom: 20px;
+}
+
+.btn-group-vertical {
+    align-items: normal;
+    width: 30vh;
+}
+
+.btn-group-vertical button {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 5px;
+}
+
+.list-group a {
+    color: #495057;
+}
+
+#resipe_list {
+    margin-left: 5%;
+    margin-right: 2%;
+}
+
+.recipeTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.recipeTable th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.recipeTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color: #495057;
+}
+
+.recipeTable tr:nth-child(odd) {
+    background-color: #343a40;
+    /*color: #495057;*/
+}
+
+.pagination {
+    display: inline-block;
+    margin-left: 5%;
+}
+
+.pagination a {
+    color: #f8f9fa;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    background-color: #343a40;
+}
+
+.pagination a.active {
+    background-color: #ddd;
+    color: #343a40;
+    border: 1px solid #343a40;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    color: #343a40
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.nav-item:hover {
+    background: #8c8d8d;
+}
+
+.nav-item ul {
+    display: none;
+    position: absolute;
+    background: #334;
+    padding-left: 0;
+}
+
+.nav-item:hover ul {
+    display: block;
+}
+
+.nav-item ul li {
+    display: block;
+}
+
+.nav-item ul li:hover {
+    background: #8c8d8d;
+    color: #eae8e8;
+}
+
+.nav-item ul li a {
+    display: block;
+    padding: 5px 5px;
+    color: #eee;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-top: 1px solid #445;
+}
+
+
+.entry:not(:first-of-type) {
+    margin-top: 10px;
+}
+
+.glyphicon {
+    font-size: 12px;
+}
+
+.text-muted {
+    margin-top: 1rem;
+}
+
+.text-muted a {
+    color: #f8f9fa;
+}
+
+#ingredientForm input {
+    color: #343a40;
+}

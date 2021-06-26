@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+</head>
+<body>
+
+<nav th:fragment="nav-guest" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0;">
+    <div class="logo_cont">
+        <a href="/"><img src="../img/logo/logo_little.png" class="logo" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/guest/main-guest">All Public Recipes</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0" action="/guest/searchByName" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search by Name"
+                   aria-label="Search by Name of Course" name="word">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: .5rem">Search
+            </button>
+        </form>
+        <form class="form-inline mt-2 mt-md-0" action="/guest/searchByIngredient" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search by Ingredient"
+                   aria-label="Search by Ingredient" name="word">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: .5rem">Search
+            </button>
+        </form>
+    </div>
+    <div class="menu-vertical">
+        <button class="main-myButton">MENU</button>
+        <div class="content">
+            <ul>
+                <li>
+                    <a href="/guest/main-guest">All Public Recipes</a>
+                </li>
+            </ul>
+            <form action="/guest/searchByName" method="post">
+                <input type="text" placeholder="Search by Name"
+                       aria-label="Search by Name of Course" name="word"><br>
+                <button type="submit">Search
+                </button>
+            </form>
+            <form action="/guest/searchByIngredient" method="post">
+                <input type="text" placeholder="Search by Ingredient"
+                       aria-label="Search by Ingredient" name="word"><br>
+                <button type="submit">Search
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+</body>
+
+</html>

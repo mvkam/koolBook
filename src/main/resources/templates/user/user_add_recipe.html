@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Add recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/changeDelRecipe.css">
+    <link rel="stylesheet" href="../css/saveIngredient.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="../js/jQuery%203.5.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="user/templs/nav-user::nav-user"></div>
+
+<main role="main" style="display: inline">
+
+    <h1>Add Your Recipe</h1><br>
+
+    <form action="/newRecipe" name="newRecipe" method="post" id="newRecipe">
+        <label>Name of Course: <input required type="text" name="nameOfCourse" id="nameOfCourse"></label><br><br>
+        <label>Category:
+            <select name="category">
+                <option>Appetizers</option>
+                <option>Salads</option>
+                <option>Soups</option>
+                <option>Main Courses</option>
+                <option>Sides</option>
+                <option>Sauces</option>
+                <option>Desserts</option>
+                <option>Drinks</option>
+            </select>
+        </label><br><br>
+
+        <div>Ingredients:
+
+            <div class="titles">
+                <div>Name</div>
+                <div>Gram</div>
+                <div>Cup</div>
+                <div>Glass</div>
+                <div>Tablespoon</div>
+                <div>Teaspoon</div>
+                <div>Piece</div>
+            </div>
+
+            <div class="input_fields_wrap">
+
+                <div class="titles">
+                    <input required type="text" name="name" id="ingrdnt" class="tit"/><input form="newRecipe"
+                                                                                             type="text"
+                                                                                             name="gram" id="gram"
+                                                                                             value="0"
+                                                                                             pattern="[0-9]{1,5}"/><input
+                        form="newRecipe" type="text" name="cup" id="cup" value="0.00" pattern="\d+(\.\d{2})?"/><input
+                        form="newRecipe" type="text" name="glass" id="glass" value="0.00"
+                        pattern="\d+(\.\d{2})?"/><input
+                        form="newRecipe" type="text" name="tableSpoon" id="tableSpoon" value="0.00"
+                        pattern="\d+(\.\d{2})?"/><input form="newRecipe" type="text" name="teaSpoon" id="teaSpoon"
+                                                        value="0.00"
+                                                        pattern="\d+(\.\d{2})?"/><input form="newRecipe" type="text"
+                                                                                        name="piece"
+                                                                                        id="piece" value="0.00"
+                                                                                        pattern="\d+(\.\d{2})?"/>
+                    <div></div>
+                </div>
+
+            </div>
+
+            <button class="add_field_button">One More Ingredient</button>
+            <button class="add_ingredient_button" form="ingredientForm" onclick="openForm()">Add New Ingredient</button>
+
+
+        </div>
+        <br><br>
+        <label>Output, g:
+            <input type="text" name="output" pattern="([0-9]{0,5})">
+        </label><br>
+
+        <label>Servings:
+            <input required type="text" name="servings" pattern="[0-9]{1,2}">
+        </label><br>
+
+        <label>Cooking technology:<br>
+            <textarea name="instruction" rows="5" cols="30"></textarea>
+        </label><br>
+
+        <label>Public:
+            <input type="hidden" name="access" value="0">
+            <input type="checkbox" name="access" value="1">
+        </label><br>
+        <br>
+        <input type="submit" value="Save Recipe" class="btn btn-outline-success my-2 my-sm-0" style="width: 20%"/>
+
+    </form>
+    <br>
+    <div id="result"></div>
+
+</main>
+
+<script>
+
+</script>
+
+<div class="form-popup" id="ingredientForm">
+    <form action="javascript:void null;" class="form-container" method="post" onsubmit="sendForm()">
+        <h1>Add Ingredient</h1>
+
+        <label for="newIngName"><b>Ingredient Name</b></label>
+        <input type="text" name="name" required id="newIngName">
+
+        <h3>Other Fields are Optional. Don't Change if Unsure.</h3>
+
+        <label for="newIngCup"><b>Grams in a Cup</b></label>
+        <input type="text" value="0.00" name="cup" required pattern="\d+(\.\d{2})?" id="newIngCup"/>
+
+        <label for="newIngGlass"><b>Grams in a Glass</b></label>
+        <input type="text" value="0.00" name="glass" required pattern="\d+(\.\d{2})?" id="newIngGlass"/>
+
+        <label for="newIngTableSpoon"><b>Grams in a Tablespoon</b></label>
+        <input type="text" value="0.00" name="tableSpoon" required pattern="\d+(\.\d{2})?" id="newIngTableSpoon"/>
+
+        <label for="newIngTeaSpoon"><b>Grams in a Teaspoon</b></label>
+        <input type="text" value="0.00" name="teaSpoon" required pattern="\d+(\.\d{2})?" id="newIngTeaSpoon"/>
+
+        <label for="newIngPiece"><b>Grams in a Piece</b></label>
+        <input type="text" value="0.00" name="piece" required pattern="\d+(\.\d{2})?" id="newIngPiece"/>
+
+        <button type="submit" class="ingredientSaveBtn">Save an Ingredient</button>
+        <input type="button" class="cancelBtn" onclick="closeForm()" value="Close" style="color: #f8f9fa; height: 34px"/>
+        <div id="status"></div>
+    </form>
+</div>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+<script th:inline="javascript">
+    let gram = document.querySelector('#gram');
+    let cup = document.querySelector('#cup');
+    let glass = document.querySelector('#glass');
+    let tableSpoon = document.querySelector('#tableSpoon');
+    let teaSpoon = document.querySelector('#teaSpoon');
+    let piece = document.querySelector('#piece');
+    let ingredient = document.querySelector('#ingrdnt');
+    let result = [];
+    let availableIngredients = [];
+    let allNames = [];
+
+    $(document).ready(function () {
+        let wrapper = $(".input_fields_wrap");
+        let add_button = $(".add_field_button");
+        let $nameField = $("#nameOfCourse");
+
+        /*<![CDATA[*/
+        availableIngredients = [[${allIngredients}]];
+        allNames = [[${allRecipeNames}]];
+        /*]]>*/
+
+        $nameField.on("blur", $nameField, function () {
+
+            if (allNames.includes($(this).val())) {
+                alert("This Name is already in Use!");
+                $(this).val('');
+            }
+
+        });
+
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            $(wrapper).append('<div class="titles">' +
+                '<input required type="text" name="name" id="ingrdnt"/>' +
+                '<input required form="newRecipe" type="text" name="gram" id="gram" value="0" pattern="[0-9]{1,5}"/>' +
+                '<input required form="newRecipe" type="text" name="cup" id="cup" value="0.00" pattern="\\d+(\\.\\d{2})?"/>' +
+                '<input required form="newRecipe" type="text" name="glass" id="glass" value="0.00" pattern="\\d+(\\.\\d{2})?"/>' +
+                '<input required form="newRecipe" type="text" name="tableSpoon" id="tableSpoon" value="0.00" pattern="\\d+(\\.\\d{2})?"/>' +
+                '<input required form="newRecipe" type="text" name="teaSpoon" id="teaSpoon" value="0.00" pattern="\\d+(\\.\\d{2})?"/>' +
+                '<input required form="newRecipe" type="text" name="piece" id="piece" value="0.00" pattern="\\d+(\\.\\d{2})?"/>' +
+                '<button type="button" class="remove_field">' +
+                '<img src="../img/minus.png" alt="remove"></button>' +
+                '</div>');
+
+            $(wrapper).find('input[id="ingrdnt"]:last').autocomplete({
+                source: availableIngredients
+
+            });
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+        });
+
+        $("input[id^='ingrdnt']").autocomplete({
+            source: availableIngredients
+        });
+
+        $(wrapper).on("blur", "#ingrdnt", function () {
+
+            if (availableIngredients.includes($(this).val())) {
+                jQuery.ajax({
+
+                    url: "/ingredientData",
+                    type: 'GET',
+                    data_type: "text",
+                    data: {'ingred': $(this).val()},
+                    async: false,
+
+                    success: function (response) {
+                        result = response.split('');
+                    },
+                    error: function () {
+                        document.getElementById("#result").innerHTML = "Something went wrong.";
+                    }
+                });
+            } else {
+                $(this).val('');
+                alert("This ingredient is out of the list!");
+            }
+
+            if (result[0] === '0')
+                $(this).next().next().prop('readonly', true);
+            if (result[1] === '0')
+                $(this).next().next().next().prop('readonly', true);
+            if (result[2] === '0')
+                $(this).next().next().next().next().prop('readonly', true);
+            if (result[3] === '0')
+                $(this).next().next().next().next().next().prop('readonly', true);
+            if (result[4] === '0')
+                $(this).next().next().next().next().next().next().prop('readonly', true);
+
+            $(wrapper).on('change', '#gram', function () {
+                if (gram.value !== '0') {
+                    cup.value = '0.00';
+                    glass.value = '0.00';
+                    tableSpoon.value = '0.00';
+                    teaSpoon.value = '0.00';
+                    piece.value = '0.00';
+                }
+            });
+            $(wrapper).on('change', '#cup', function () {
+                if (cup.value !== '0.00') {
+                    gram.value = '0';
+                    glass.value = '0.00';
+                    tableSpoon.value = '0.00';
+                    teaSpoon.value = '0.00';
+                    piece.value = '0.00';
+                }
+            });
+            $(wrapper).on('change', '#glass', function () {
+                if (glass.value !== '0.00') {
+                    cup.value = '0.00';
+                    gram.value = '0';
+                    tableSpoon.value = '0.00';
+                    teaSpoon.value = '0.00';
+                    piece.value = '0.00';
+                }
+            });
+            $(wrapper).on('change', '#tableSpoon', function () {
+                if (tableSpoon.value !== '0.00') {
+                    cup.value = '0.00';
+                    glass.value = '0.00';
+                    gram.value = '0';
+                    teaSpoon.value = '0.00';
+                    piece.value = '0.00';
+                }
+            });
+            $(wrapper).on('change', '#teaSpoon', function () {
+                if (teaSpoon.value !== '0.00') {
+                    cup.value = '0.00';
+                    glass.value = '0.00';
+                    tableSpoon.value = '0.00';
+                    gram.value = '0';
+                    piece.value = '0.00';
+                }
+            });
+            $(wrapper).on('change', '#piece', function () {
+                if (piece.value !== '0.00') {
+                    cup.value = '0.00';
+                    glass.value = '0.00';
+                    tableSpoon.value = '0.00';
+                    teaSpoon.value = '0.00';
+                    gram.value = '0';
+                }
+            });
+
+        });
+
+
+    });
+
+
+    function openForm() {
+        document.getElementById("ingredientForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("ingredientForm").style.display = "none";
+    }
+
+    function sendForm() {
+        let msg = JSON.stringify({
+            "name": $("#newIngName").val(),
+            "cup": $("#newIngCup").val(),
+            "glass": $("#newIngGlass").val(),
+            "tableSpoon": $("#newIngTableSpoon").val(),
+            "teaSpoon": $("#newIngTeaSpoon").val(),
+            "piece": $("#newIngPiece").val()
+        });
+
+        jQuery.ajax({
+            method: 'POST',
+            url: '/addIngredient',
+            beforeSend: function () {
+                jQuery('#status').html('Sending...');
+            },
+            data_type: "text",
+            data: {'msg': msg},
+            cache: false,
+
+            success: function () {
+                document.getElementById("status").innerHTML = "Made!";
+                availableIngredients.push($("#newIngName").val());
+            },
+
+            error: function () {
+                document.getElementById("status").innerHTML = "Something went wrong.";
+            }
+        });
+    }
+</script>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Admin ingredients</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/changeDelRecipe.css">
+    <link rel="stylesheet" href="../css/adminUsers.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <script src="../js/jQuery%203.5.1.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="admin/templs/nav-admin::nav-admin"></div>
+
+<main role="main">
+
+    <h2 th:if="${isExist}==0">There is no such Ingredient.</h2>
+
+    <div style="flex-grow: 1; margin-left: 2%" id="resipe_list">
+        <form id="changeDel" action="/delIngredients" method="post">
+            <ul class="list-group">
+                <th:block th:each="ingredient,stat : ${ingredients}" th:with="point='/admin/updateIngredientPage'">
+
+                    <li th:class="list-group-item">
+                        <div id="checkbox">
+                            <label>
+                                <input th:if="${!isUsed.get(stat.index)}" th:type="checkbox"
+                                       th:class="custom-checkbox" th:id="checkbox-id" th:name="toDelete"
+                                       th:value="${ingredient.id}"/>
+                            </label>
+                        </div>
+                        <a th:utext="${ingredient.name}" th:href="@{${point}(id=${ingredient.id}, alert='0')}"
+                           style="color: #495057; margin-left: 1em"></a>
+                    </li>
+
+                </th:block>
+            </ul>
+            <button class="delBtn">Delete</button>
+        </form>
+        <br><br>
+        <div class="pagination" th:if="${allPage gt 1}">
+            <a th:href="@{/ingredients(pageNo = 0)}">&laquo;</a>
+            <th:block th:each="i: ${#numbers.sequence(0, allPage - 1)}">
+                <a th:href="@{/ingredients(pageNo = ${i})}">[[${i} + 1]]</a>
+            </th:block>
+            <a th:href="@{/ingredients(pageNo = ${allPage} - 1)}">&raquo;</a>
+        </div>
+    </div>
+
+</main>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

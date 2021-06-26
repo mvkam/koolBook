@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div th:fragment="category-admin">
+    <h1>Recipe Categories</h1>
+    <form class="btn-group-vertical">
+        <button formaction="/admin/category_admin" name="category" value="Appetizers" formmethod="post" type="submit">
+            Appetizers
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Salads" formmethod="post" type="submit">
+            Salads
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Soups" formmethod="post" type="submit">Soups
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Main Courses" formmethod="post" type="submit">
+            Main Courses
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Sides" formmethod="post" type="submit">Sides
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Sauces" formmethod="post" type="submit">
+            Sauces
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Desserts" formmethod="post" type="submit">
+            Desserts
+        </button>
+        <button formaction="/admin/category_admin" name="category" value="Drinks" formmethod="post" type="submit">
+            Drinks
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
+

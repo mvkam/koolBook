@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <script src="../js/jQuery%203.5.1.js"></script>
+
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="user/templs/nav-user::nav-user"></div>
+
+<main role="main">
+
+    <div th:with="point='/user/category_user'" th:insert="user/templs/category-list::category-list"></div>
+
+    <div style="flex-grow: 1">
+        <div th:with="point='/recipePageUser'" th:insert="templs/recipes-list::recipes-list" id="resipe_list"></div>
+        <br><br>
+
+        <div class="pagination" th:if="${allPage gt 1}">
+            <a th:href="@{/user/category_user(pageNo = 0, category=${category})}">&laquo;</a>
+            <th:block th:each="i: ${#numbers.sequence(0, allPage - 1)}">
+                <a th:href="@{/user/category_user(pageNo = ${i}, category=${category})}">[[${i} + 1]]</a>
+            </th:block>
+            <a th:href="@{/user/category_user(pageNo = ${allPage} - 1, category=${category})}">&raquo;</a>
+        </div>
+    </div>
+</main>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

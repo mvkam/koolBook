@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title></title>
+</head>
+<body>
+
+<nav th:fragment="nav-admin" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding: 0;">
+    <div class="logo_cont">
+        <a href="/" style="outline: none;"><img src="../img/logo/logo_little.png" class="logo" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/main-admin">All Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/addRecipe">Add Recipe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/changeDelRecipe">Change/Delete Recipes</a>
+            </li>
+            <li class="nav-item">
+                <p class="nav-link" style="cursor: pointer">Administration</p>
+                <ul>
+                    <li><a th:href="@{/users}">Users</a></li>
+                    <li><a th:href="@{/ingredients}">Ingredients</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logOut}">Log Out</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0" action="/searchByNameAdmin" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search by Name"
+                   aria-label="Search by Name of Course" name="word">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: .5rem">Search
+            </button>
+        </form>
+        <form class="form-inline mt-2 mt-md-0" action="/searchByIngredientAdmin" method="post">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search by Ingredient"
+                   aria-label="Search by Ingredient" name="word">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: .5rem">Search
+            </button>
+        </form>
+    </div>
+    <div class="menu-vertical">
+        <button class="main-myButton">MENU</button>
+        <div class="content">
+            <ul>
+                <li>
+                    <a class="nav-link" href="/admin/main-admin">All Recipes</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/admin/addRecipe">Add Recipe</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/admin/changeDelRecipe">Change/Delete Recipes</a>
+                </li>
+                <li>
+                    <p style="cursor: pointer">Administration</p>
+                    <ul>
+                        <li><a th:href="@{/users}">Users</a></li>
+                        <li><a th:href="@{/ingredients}">Ingredients</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/logOut}">Log Out</a>
+                </li>
+            </ul>
+            <form action="/searchByNameAdmin" method="post">
+                <input type="text" placeholder="Search by Name"
+                       aria-label="Search by Name of Course" name="word">
+                <button type="submit">Search
+                </button>
+            </form>
+            <form action="/searchByIngredientAdmin" method="post">
+                <input type="text" placeholder="Search by Ingredient"
+                       aria-label="Search by Ingredient" name="word">
+                <button type="submit">Search
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

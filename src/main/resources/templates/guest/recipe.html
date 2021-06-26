@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Recipe-guest</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/hideNav.css">
+    <link rel="icon" href="../img/logo/favicon.png"/>
+    <script src="../js/jQuery%203.5.1.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:insert="guest/templs/nav-guest::nav-guest"></div>
+
+<main role="main">
+
+    <div style="width: 80%">
+        <h1 th:text="${nameOfCourse}"></h1>
+        <p style="margin-top: -1em">Owner: [[${login}]]</p>
+        <h2 th:text="${category}"></h2>
+        <p>Date of creation: <span th:text="${dateOfCreate}"></span></p>
+        <p>Update Date: <span th:text="${dateOfUpdate}"></span></p>
+        <h4>Ingredient list:</h4>
+
+        <table class="recipeTable">
+            <tr>
+                <th>Name</th>
+                <th>Gram</th>
+                <th>Cup, 250 ml</th>
+                <th>Glass, 200 ml</th>
+                <th>Tablespoon, 15 ml</th>
+                <th>Teaspoon, 5ml</th>
+                <th>Piece</th>
+            </tr>
+            <tr th:each="ingredient : ${ingredients}" th:with="amount=${ingredient.getValue()}">
+                <td th:text="${ingredient.getKey().name}"></td>
+                <td th:text="${#numbers.formatInteger(ingredient.getValue(), 1, 'NONE')}"></td>
+                <td th:text="${ingredient.getKey().cup!=0} ? ${#numbers.formatDecimal((amount/ingredient.getKey().cup), 1, 'NONE', 2, 'POINT')} : 0"></td>
+                <td th:text="${ingredient.getKey().glass!=0} ? ${#numbers.formatDecimal((amount/ingredient.getKey().glass), 1, 'NONE', 2, 'POINT')} : 0"></td>
+                <td th:text="${ingredient.getKey().tableSpoon!=0} ? ${#numbers.formatDecimal((amount/ingredient.getKey().tableSpoon), 1, 'NONE', 2, 'POINT')} : 0"></td>
+                <td th:text="${ingredient.getKey().teaSpoon!=0} ? ${#numbers.formatDecimal((amount/ingredient.getKey().teaSpoon), 1, 'NONE', 2, 'POINT')} : 0"></td>
+                <td th:text="${ingredient.getKey().piece!=0} ? ${#numbers.formatDecimal((amount/ingredient.getKey().piece), 1, 'NONE', 2, 'POINT')} : 0"></td>
+            </tr>
+
+        </table>
+        <h4>Output, g: <span th:text="${#numbers.formatInteger(output, 1, 'NONE')}"></span></h4>
+        <br>
+        <h2 style="display: inline-block">Servings: <span th:text="${servings}"></span></h2>
+        <form action="/recipe" style="display: inline-block; margin-left: 20px">
+            <label for="servingAmount">To change Servings</label><br>
+            <input class="form-control mr-sm-2" type="number" step="1" min="1" max="20" th:value="${servings}"
+                   style="color: #343a40; width: 70px; display: inline-block" name="servingAmount" id="servingAmount">
+            <button class="btn btn-outline-success my-2 my-sm-0">Submit</button>
+            <input type="hidden" th:value="${nameOfCourse}" name="nameOfCourse">
+            <input type="hidden" th:value="guest" name="role">
+        </form>
+        <br><br>
+        <h4>Cooking technology: </h4>
+        <span th:text="${instruction}"></span>
+    </div>
+</main>
+
+<footer class="forms">
+    <div class="container">
+        <p class="text-muted">Creator: Max V. Kamkin, <a href="tel:+380968446688">+380968446688</a>, <a
+                href="mailto:mvkamkin@gmail.com">mvkamkin@gmail.com</a>.</p>
+    </div>
+</footer>
+
+</body>
+
+<script src="../js/script.js"></script>
+
+</html>
+
+

@@ -1,0 +1,42 @@
+.form-popup {
+    display: none;
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+.form-container {
+    position: absolute;
+    padding: 10px;
+    background-color: #343A40;
+    margin: 5%;
+}
+
+.form-container input[type=text] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0 5px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.form-container .ingredientSaveBtn:hover, .cancelBtn:hover {
+    opacity: 1;
+}
+
+.fixed-top {
+    z-index: 555;
+}
+
+.ingredientSaveBtn {
+    border-radius: 5px;
+    height: 34px;
+}
